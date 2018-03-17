@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(tidyverse)\n\nguns <- read_csv('gun_sale_database.csv')\nshops <- read_csv('active_firearms_dealers.csv')\n",
+    "created" : 1521302742930.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2638850596",
+    "id" : "D7AD3303",
+    "lastKnownWriteTime" : 7956010482125856622,
+    "last_content_update" : 1521303517903,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
