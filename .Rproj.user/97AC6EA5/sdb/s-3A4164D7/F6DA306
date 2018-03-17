@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1521308570942.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F6DA306",
+    "lastKnownWriteTime" : -4829623273321677895,
+    "last_content_update" : 1521308570942,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "659B246",
+        "caption" : "guns_and_shops",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=guns_and_shops&cache_key=659B246",
+        "displayedObservations" : 46616,
+        "environment" : "",
+        "object" : "guns_and_shops",
+        "preview" : 0,
+        "totalObservations" : 46616,
+        "variables" : 14
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

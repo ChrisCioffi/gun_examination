@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1521308848071.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "75D1AFBC",
+    "lastKnownWriteTime" : 4356952048,
+    "last_content_update" : 1521308848071,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "A2C2D71A",
+        "caption" : "guns_and_shops_count",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=guns_and_shops_count&cache_key=A2C2D71A",
+        "displayedObservations" : 39946,
+        "environment" : "",
+        "object" : "guns_and_shops_count",
+        "preview" : 0,
+        "totalObservations" : 39946,
+        "variables" : 2
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
