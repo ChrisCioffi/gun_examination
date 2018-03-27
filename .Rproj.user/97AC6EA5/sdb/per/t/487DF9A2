@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1522082349267.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "487DF9A2",
+    "lastKnownWriteTime" : 140561394696194,
+    "last_content_update" : 1522082349267,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "231C8B9F",
+        "caption" : "gun_sales",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=gun_sales&cache_key=231C8B9F",
+        "displayedObservations" : 254,
+        "environment" : "",
+        "object" : "gun_sales",
+        "preview" : 0,
+        "totalObservations" : 254,
+        "variables" : 2
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

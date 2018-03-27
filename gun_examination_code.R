@@ -44,7 +44,7 @@ names(guns)
 #let's look at the gun models 
 gun_models <- guns_and_shops %>%
   #the colum we are grouping 
-  group_by(Model)  %>%
+  group_by(Model, Make )  %>%
   #creates a count with the row name being count. The n value is the number of times it occurs
   summarise(count = n()) %>%
   #arrange the list in descending order
@@ -109,6 +109,7 @@ big_bullets <- guns_and_shops %>%
     summarise(count = n()) %>%
     arrange(desc(count))
   View( ninemm_guns)
+  
   
   
 

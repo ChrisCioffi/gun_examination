@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1522082531970.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "7B8F186D",
+    "lastKnownWriteTime" : 140561394696198,
+    "last_content_update" : 1522082531970,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "74C02C16",
+        "caption" : "gun_shop_county",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=gun_shop_county&cache_key=74C02C16",
+        "displayedObservations" : 26,
+        "environment" : "",
+        "object" : "gun_shop_county",
+        "preview" : 0,
+        "totalObservations" : 26,
+        "variables" : 2
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
