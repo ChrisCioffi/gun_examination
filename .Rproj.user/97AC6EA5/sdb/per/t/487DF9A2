@@ -12,15 +12,15 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "cacheKey" : "231C8B9F",
+        "cacheKey" : "7400EFC9",
         "caption" : "gun_sales",
-        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=gun_sales&cache_key=231C8B9F",
-        "displayedObservations" : 254,
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=gun_sales&cache_key=7400EFC9",
+        "displayedObservations" : "254",
         "environment" : "",
         "object" : "gun_sales",
-        "preview" : 0,
-        "totalObservations" : 254,
-        "variables" : 2
+        "preview" : "0",
+        "totalObservations" : "254",
+        "variables" : "3"
     },
     "relative_order" : 3,
     "source_on_save" : false,

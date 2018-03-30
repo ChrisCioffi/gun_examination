@@ -54,7 +54,7 @@ gun_models[1:10,]
 
 #where are these guns being sold?   This is a problem, because the state gave a .pdf qwithout all the gun shop names. We need to go back and make sure all the names are there. There is a code in the gun database, but not the shop database. Will follow up with the state. 
 gun_sales <- guns_and_shops %>%
-  group_by(`Dealer Name` ) %>%
+  group_by(`Dealer Name`, County ) %>%
   summarise(count = n()) %>%
   #arrange the list in descending order
   arrange(desc(count)) 
@@ -94,11 +94,13 @@ gun_make[1:10,]
 #Here I'm searching for guns that take big (ish) bullets. I'm trying to find weapons that have calibners that are used in assault-style weapons. I used the List of AR platform calibers page (https://en.wikipedia.org/wiki/List_of_AR_platform_calibers) from Wikipedia to build my list. I added both decimal and-non-decimal versions to make sure I was getting all the possible entries. 
 
 big_bullets <- guns_and_shops %>%
-  filter(grepl("5.45|545|5.56|556|5.7|6.5|65|6.8|68|7.62|762", Caliber)) %>%
-  group_by( Model) %>%
+  filter(grepl("5.45|545|5.56|556|5.7|6.5|65|6.8|68|7.62|762|223|.223", Caliber)) %>%
+  group_by(Model) %>%
   summarise(count = n()) %>%
   arrange(desc(count))
   View(big_bullets)
+  
+  
   
 #Now I'm looking for 9mm guns, so I use a grepl filter to grab all the values htat have a 9 in them. And just to makje sure I'm not grabbing any other calibers, I tlel the computer, hey, ignore all the calibers that could fit in the 'assault-style' category.   
   
