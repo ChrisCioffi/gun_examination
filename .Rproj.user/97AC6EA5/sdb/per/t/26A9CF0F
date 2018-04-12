@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1522593393761.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "26A9CF0F",
+    "lastKnownWriteTime" : 4601353106900317714,
+    "last_content_update" : 1522593393761,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "6D1B4269",
+        "caption" : "crime_data_years",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=crime_data_years&cache_key=6D1B4269",
+        "displayedObservations" : 984,
+        "environment" : "",
+        "object" : "crime_data_years",
+        "preview" : 0,
+        "totalObservations" : 984,
+        "variables" : 39
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

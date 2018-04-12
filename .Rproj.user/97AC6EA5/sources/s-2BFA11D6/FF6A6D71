@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1523491465457.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "FF6A6D71",
+    "lastKnownWriteTime" : 4294967302,
+    "last_content_update" : 1523491465457,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "A7482BFF",
+        "caption" : "augmented_crime_date",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=augmented_crime_date&cache_key=A7482BFF",
+        "displayedObservations" : 24,
+        "environment" : "",
+        "object" : "augmented_crime_date",
+        "preview" : 0,
+        "totalObservations" : 24,
+        "variables" : 11
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

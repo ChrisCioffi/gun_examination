@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1521302742930.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1749004506",
+    "id" : "D7AD3303",
+    "lastKnownWriteTime" : 1523491687,
+    "last_content_update" : 1523491687175,
+    "path" : "~/Documents/GitHub/gun_examination/gun_examination_code.R",
+    "project_path" : "gun_examination_code.R",
+    "properties" : {
+        "cursorPosition" : "246,12",
+        "scrollLine" : "236",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
