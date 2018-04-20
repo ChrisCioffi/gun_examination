@@ -112,7 +112,7 @@ gun_caliber[1:10,]
 
 big_bullets <- guns_and_shops %>%
   filter(grepl("5.45|545|5.56|556|5.7|6.5|65|6.8|68|7.62|762|223|.223", Caliber)) %>%
-  group_by(Model) %>%
+  group_by(Model, Make) %>%
   summarise(count = n()) %>%
   arrange(desc(count))
   View(big_bullets)
@@ -120,13 +120,13 @@ big_bullets <- guns_and_shops %>%
   
   #if there's no calibner, it's just this receiver piece. It's the only part of the gun with a serial number. And it could indicate the number of ar-15-type weapons bought in MD....556 is the ruger ar-556. 
   ar_15 <- guns_and_shops %>%
-    filter(grepl("ar15|ar-15|-15|15|556", Model) & Caliber == "NULL" ) %>%
+    filter(grepl("ar*|ar-15|-15|*15*|556", Model) & Caliber == "NULL" ) %>%
   group_by(Model ) %>%
   summarise(count = n()) %>%
     arrange(desc(count))
   
   ar_15 <- guns_and_shops %>%
-    filter(grepl("ar15|ar-15|-15|15|556", Model) & Caliber == "NULL" )
+    filter(grepl("ar*|AR*|ar-15|-15|*15*|556", Model) & Caliber == "NULL" )
   
 
  #expands on above query. sorts the count by dealer name and adds some info about where the sales are happening  
@@ -202,7 +202,7 @@ names(crime_Date_new)[names(crime_Date_new) == 'as.Date.crime_data.YEAR....m..d.
 #OK. Now let's join them together, so we can sort better. Hoperfully this works. Because otherwise my life was for naught. 
 crime_data_years <- cbind(crime_data, crime_Date_new)
 
-#and now let's pull data dated 2015 or later, the latest year there is.....I assume there's an easier way to do that, but I don't care. 
+#and now let's pull data dated 2015 or later, the latest year there is.....I assume there's an easier way to do that, but I already know this slightly harder way  
 Latest_year <- crime_data_years %>%
   filter(cleaned_date >= as.Date("2015-01-01"))
 
@@ -213,7 +213,7 @@ Latest_year <- crime_data_years %>%
 
 
 #OK. I've now gotten just the 
-useful_crime_data <- subset(Latest_year, select = c("JURISDICTION", "cleaned_date", "POPULATION", "MURDER","VIOLENT CRIME TOTAL","PROPERTY CRIME TOTALS"))
+useful_crime_data <- subset(Latest_year, select = c("JURISDICTION", "POPULATION", "MURDER","VIOLENT CRIME TOTAL","PROPERTY CRIME TOTALS"))
 
 #couldn't get my for loop to work....maybe later I'll revisit.
 automated_crime_ratios <-
@@ -239,10 +239,11 @@ population_and_gun_count <- left_join(gun_shop_county_fixed  , useful_crime_data
 #changes the name of row "count" to row "guns sold"
 colnames(population_and_gun_count)[2] <- "guns sold"
 #deletes this weird row that appeared at the end of my data and I'm too lazy to ffigure out why it appeared
-population_and_gun_count <- population_and_gun_count[-25, ]
-#removes the weird column that popped up. No idea why it's there, and it's ewasier to just kill it.
-population_and_gun_count <- subset(population_and_gun_count, select = -X3)
+#population_and_gun_count <- population_and_gun_count[-25, ]
+#removes the weird column that popped up. No idea why it's there, and it's ewasier to just kill it....later changed to get rid of a column i didn't need
+#augmented_crime_date <- subset(augmented_crime_date, select = -cleaned_date)
 
+write_csv(augmented_crime_date, "crime_data_all.csv")
 augmented_crime_date <- mutate(population_and_gun_count, 
             murder_per_capita = MURDER / POPULATION,
             violent_crime_per_capita = `VIOLENT CRIME TOTAL` / POPULATION,
@@ -250,7 +251,38 @@ augmented_crime_date <- mutate(population_and_gun_count,
             guns_per_capita = `guns sold`/ POPULATION
             )
 
-hist(augmented_crime_date$murder_per_capita)
-hist(augmented_crime_date$violent_crime_per_capita)
-hist(augmented_crime_date$property_crime_per_capita)
+hist(augmented_crime_date$`guns sold`)
+boxplot(augmented_crime_date$`guns sold`)
+mean(augmented_crime_date$`guns sold`)
+sd(augmented_crime_date$`guns sold`)
+
+plot(augmented_crime_date$`guns sold`, augmented_crime_date$`Median income (dollars)`)
+
+mean(augmented_crime_date$`Median income (dollars)`)
+sd(augmented_crime_date$`Median income (dollars)`)
+
+
+mean(augmented_crime_date$POPULATION)
+sd(augmented_crime_date$POPULATION)
+
+
+mean(augmented_crime_date$`VIOLENT CRIME TOTAL`)
+sd(augmented_crime_date$`VIOLENT CRIME TOTAL`)
+
+mean(augmented_crime_date$`PROPERTY CRIME TOTALS`)
+sd(augmented_crime_date$`PROPERTY CRIME TOTALS`)
+
+
+
 hist(augmented_crime_date$guns_per_capita)
+
+plot(augmented_crime_date$`guns sold`,augmented_crime_date$`Median income (dollars)`)
+
+
+cor.test(augmented_crime_date$`guns sold`, augmented_crime_date$`Median income (dollars)`)
+
+cor.test(augmented_crime_date$`guns sold`, augmented_crime_date$POPULATION)
+
+cor.test(augmented_crime_date$`guns sold`, augmented_crime_date$`VIOLENT CRIME TOTAL`)
+
+cor.test(augmented_crime_date$`guns sold`, augmented_crime_date$`PROPERTY CRIME TOTALS`)
