@@ -12,15 +12,15 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "cacheKey" : "3BCDBBEB",
+        "cacheKey" : "D55EFA3F",
         "caption" : "ar_15_shops",
-        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=ar_15_shops&cache_key=3BCDBBEB",
-        "displayedObservations" : 155,
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=ar_15_shops&cache_key=D55EFA3F",
+        "displayedObservations" : "155",
         "environment" : "",
         "object" : "ar_15_shops",
-        "preview" : 0,
-        "totalObservations" : 155,
-        "variables" : 5
+        "preview" : "0",
+        "totalObservations" : "155",
+        "variables" : "5"
     },
     "relative_order" : 6,
     "source_on_save" : false,

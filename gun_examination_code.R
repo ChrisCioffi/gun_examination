@@ -128,8 +128,10 @@ big_bullets <- guns_and_shops %>%
   ar_15 <- guns_and_shops %>%
     filter(grepl("ar*|AR*|ar-15|-15|*15*|556", Model) & Caliber == "NULL" )
   
+  
+  
 
- #expands on above query. sorts the count by dealer name and adds some info about where the sales are happening  
+   #expands on above query. sorts the count by dealer name and adds some info about where the sales are happening  
   ar_15_shops <- guns_and_shops %>%
     filter(grepl("ar15|ar-15|-15|15|556", Model) & Caliber == "NULL" ) %>%
     group_by(`Dealer Name`, County, `Mailing & Business Address`, City) %>%
@@ -165,7 +167,6 @@ big_bullets <- guns_and_shops %>%
   
 # Found this from http://stla.github.io/stlapblog/posts/Numextract.html. It extracts numbers from strings. 
 
-  
 numextract <- function(string){ 
    str_extract(string, "\\-*\\d+\\.*\\d*")
  } 
