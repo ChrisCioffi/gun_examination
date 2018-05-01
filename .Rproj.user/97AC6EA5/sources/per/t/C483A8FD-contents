@@ -22,8 +22,8 @@ View(guns_count)
 #guns2 <- read_csv('gun_sale_database.csv')
 
 #for both below, I found that there are 77 observations for this application number in both datasets.  
-#guns_filter <- guns %>%
-#  filter(`Application Number` == '2017014401')
+guns_filter <- guns %>%
+  filter(`Application Number` == '2017014401')
 
 #guns2_filter <- guns2 %>%
 #  filter(`Application Number` == '2017014401')
@@ -96,6 +96,14 @@ gun_shop_county <- guns_and_shops %>%
 View(gun_shop_county)
 gun_shop_county[1:10,]
 
+#COUNT THE NUMBER OF SHOPS IN EACH COUNTY
+Number_of_shops <- shops %>%
+  group_by(County) %>%
+  summarise(count = n()) %>%
+  #arrange the list in descending order
+  arrange(desc(count))
+
+
 #what caliber weapons are being sold?
 gun_caliber <- guns_and_shops %>%
   group_by( Caliber) %>%
@@ -110,18 +118,21 @@ gun_caliber[1:10,]
 #modeled from https://awakeningdatascientist.wordpress.com/2015/07/20/r-of-the-day-grep-and-grepl/ 
 #Here I'm searching for guns that take big (ish) bullets. I'm trying to find weapons that have calibners that are used in assault-style weapons. I used the List of AR platform calibers page (https://en.wikipedia.org/wiki/List_of_AR_platform_calibers) from Wikipedia to build my list. I added both decimal and-non-decimal versions to make sure I was getting all the possible entries. 
 
-big_bullets <- guns_and_shops %>%
+ar_platform_calibers <- guns_and_shops %>%
   filter(grepl("5.45|545|5.56|556|5.7|6.5|65|6.8|68|7.62|762|223|.223", Caliber)) %>%
   group_by(Model, Make) %>%
   summarise(count = n()) %>%
   arrange(desc(count))
-  View(big_bullets)
+  View(ar_platform_calibers)
+  
+write_csv(ar_platform_calibers, "ar_platform_calibers.csv")
+  
   
   
   #if there's no calibner, it's just this receiver piece. It's the only part of the gun with a serial number. And it could indicate the number of ar-15-type weapons bought in MD....556 is the ruger ar-556. 
-  ar_15 <- guns_and_shops %>%
+ Lower_receiver <- guns_and_shops %>%
     filter(grepl("ar*|ar-15|-15|*15*|556", Model) & Caliber == "NULL" ) %>%
-  group_by(Model ) %>%
+  group_by(Model, Make ) %>%
   summarise(count = n()) %>%
     arrange(desc(count))
   
@@ -129,7 +140,7 @@ big_bullets <- guns_and_shops %>%
     filter(grepl("ar*|AR*|ar-15|-15|*15*|556", Model) & Caliber == "NULL" )
   
   
-  
+  write_csv(Lower_receiver, "lower_receiver.csv")
 
    #expands on above query. sorts the count by dealer name and adds some info about where the sales are happening  
   ar_15_shops <- guns_and_shops %>%
