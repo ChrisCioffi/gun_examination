@@ -3,6 +3,8 @@ library(stringr)
 
 guns <- read_csv('gun_sale_database-openrefined.csv')
 
+guns2 <- read_csv('gun_sale_database-openrefined-new.csv')
+
 #First, I used Tabula to create a CSV from a PDF. Then, in an effort to reduce duplicates when joining the tables, which don't have this unique ID number that is included in the PDF....I'll ask about that when I hear from the State Police. In the meantime, I did a slight modification to this sheet. I removed one of the Atlantic Guns locations. They are both in Montgomery county, but were getting doubled, I also removed a duplicate in spelling J & S pawn had two separate spellings of the same address. And I changed the name of 1237 gun shop to .1237 to be consisitent with the guns table it is saved into a new spreadsheet. 
 shops <- read_csv('mod_active_firearms_dealers_new.csv')
 
@@ -37,6 +39,7 @@ guns_filter <- guns %>%
 
 guns_and_shops <-  left_join(guns, shops, by = "Dealer Name")
 
+guns_and_shops2 <-  left_join(guns2, shops, by = "Dealer Name")
 # Alright, with all that annoying data cleaning and joining out of the way, I can start looking at stuff, like where guns are sold in the state and how many. 
 
 names(guns)
@@ -130,26 +133,30 @@ write_csv(ar_platform_calibers, "ar_platform_calibers.csv")
   
   
   #if there's no calibner, it's just this receiver piece. It's the only part of the gun with a serial number. And it could indicate the number of ar-15-type weapons bought in MD....556 is the ruger ar-556. 
- Lower_receiver <- guns_and_shops %>%
-    filter(grepl("ar*|ar-15|-15|*15*|556", Model) & Caliber == "NULL" ) %>%
-  group_by(Model, Make ) %>%
+#here we look at the model, the dealer name and the county. In three separate quweries 
+ Lower_receiver_model <- guns_and_shops2 %>%
+    filter( Caliber == "NULL" ) %>%
+  group_by(Model, Make) %>%
   summarise(count = n()) %>%
     arrange(desc(count))
   
-  ar_15 <- guns_and_shops %>%
-    filter(grepl("ar*|AR*|ar-15|-15|*15*|556", Model) & Caliber == "NULL" )
-  
+ #by county --- pg, montgomery, baltimore, baltimore city, howard
+ 
+ Lower_receiver_dealer <- guns_and_shops2 %>%
+   filter(grepl("ar*|ar-15|-15|*15*|556", Model) & Caliber == "NULL" ) %>%
+   group_by(Model,`Dealer Name`, County ) %>%
+   summarise(count = n()) %>%
+   arrange(desc(count))
+ 
+ Lower_receiver_county <- guns_and_shops2 %>%
+   filter(grepl("ar*|ar-15|-15|*15*|556", Model) & Caliber == "NULL" ) %>%
+   group_by(Model, County ) %>%
+   summarise(count = n()) %>%
+   arrange(desc(count))
   
   write_csv(Lower_receiver, "lower_receiver.csv")
 
-   #expands on above query. sorts the count by dealer name and adds some info about where the sales are happening  
-  ar_15_shops <- guns_and_shops %>%
-    filter(grepl("ar15|ar-15|-15|15|556", Model) & Caliber == "NULL" ) %>%
-    group_by(`Dealer Name`, County, `Mailing & Business Address`, City) %>%
-    summarise(count = n()) %>%
-    arrange(desc(count))
-    write_csv(ar_15_shops, "ar_15_shops.csv")
-  
+
   
 #Now I'm looking for 9mm guns, so I use a grepl filter to grab all the values htat have a 9 in them. And just to makje sure I'm not grabbing any other calibers, I tlel the computer, hey, ignore all the calibers that could fit in the 'assault-style' category.   And Then, just count it up. 
   

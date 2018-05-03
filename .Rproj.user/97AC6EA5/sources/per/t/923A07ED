@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1525358426735.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "923A07ED",
+    "lastKnownWriteTime" : 7956010480105947142,
+    "last_content_update" : 1525358426735,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "B0E571A8",
+        "caption" : "Lower_receiver_dealer",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=Lower_receiver_dealer&cache_key=B0E571A8",
+        "displayedObservations" : 987,
+        "environment" : "",
+        "object" : "Lower_receiver_dealer",
+        "preview" : 0,
+        "totalObservations" : 987,
+        "variables" : 4
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

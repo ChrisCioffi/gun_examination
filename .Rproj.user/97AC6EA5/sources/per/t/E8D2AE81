@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1525358426121.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "E8D2AE81",
+    "lastKnownWriteTime" : 9143985374976,
+    "last_content_update" : 1525358426121,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "D9B60EB",
+        "caption" : "Lower_receiver_county",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=Lower_receiver_county&cache_key=D9B60EB",
+        "displayedObservations" : 659,
+        "environment" : "",
+        "object" : "Lower_receiver_county",
+        "preview" : 0,
+        "totalObservations" : 659,
+        "variables" : 3
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
