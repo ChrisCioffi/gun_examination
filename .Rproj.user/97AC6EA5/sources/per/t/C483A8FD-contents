@@ -144,7 +144,7 @@ write_csv(ar_platform_calibers, "ar_platform_calibers.csv")
  
  Lower_receiver_dealer <- guns_and_shops2 %>%
    filter(grepl("ar*|ar-15|-15|*15*|556", Model) & Caliber == "NULL" ) %>%
-   group_by(Model,`Dealer Name`, County ) %>%
+   group_by( County ) %>%
    summarise(count = n()) %>%
    arrange(desc(count))
  
@@ -208,100 +208,3 @@ View(caliber_digit_counts)
 caliber_digit_counts[1:10,]
   
 
-
-library(lubridate)
-crime_data <- read_csv("violent_crime_maryland.csv")
-#weird. My sorting's not working. Aha it's because they're not date fields
-class(crime_data$YEAR)
-#ok lert's make it a date field. 
-crime_Date_new <- data.frame(as.Date(crime_data$YEAR, "%m/%d/%Y")) 
-#and then we'll change the name to something reasonable. 
-names(crime_Date_new)[names(crime_Date_new) == 'as.Date.crime_data.YEAR....m..d..Y..'] <- 'cleaned_date'
-
-#OK. Now let's join them together, so we can sort better. Hoperfully this works. Because otherwise my life was for naught. 
-crime_data_years <- cbind(crime_data, crime_Date_new)
-
-#and now let's pull data dated 2015 or later, the latest year there is.....I assume there's an easier way to do that, but I already know this slightly harder way  
-Latest_year <- crime_data_years %>%
-  filter(cleaned_date >= as.Date("2015-01-01"))
-
-#now we want a per capita gun sales number, because it's going to make our pvalue comparisons easier. https://www.rforexcelusers.com/calculate-percent-column-r/
-
-
-
-
-
-#OK. I've now gotten just the 
-useful_crime_data <- subset(Latest_year, select = c("JURISDICTION", "POPULATION", "MURDER","VIOLENT CRIME TOTAL","PROPERTY CRIME TOTALS"))
-
-#couldn't get my for loop to work....maybe later I'll revisit.
-automated_crime_ratios <-
-for(col in names(useful_crime_data)[-3]) {
-  useful_crime_data[paste0(col, '_pct')] <- (useful_crime_data[col]) / useful_crime_data$POPULATION
-}
-
-#changes baltimore to baltimore city.
-gun_shop_county$County[gun_shop_county$County=='Baltimore_city'] <- 'Baltimore_City'
-gun_shop_county$County[gun_shop_county$County=='Baltimore City'] <- 'Baltimore_City'
-#oops. Messed it up for the join.
-gun_shop_county$County[gun_shop_county$County=='Baltimore_City'] <- 'Baltimore City'
-
-#so the two sheets had slifghtly different names, and it made the join impossible. I just quikly made them the same in Excel, beccuase there were only 24 to do. 
-write_csv(gun_shop_county, "gun_shop_county1.csv")
-
-gun_shop_county_fixed <-read_csv("gun_shop_county.csv")
-
-#joins the population table I made to the gun shop county count table 
-population_and_gun_count <- left_join(gun_shop_county_fixed  , useful_crime_data, by = c("County" = "JURISDICTION"))
-#changes count to guns sold
-
-#changes the name of row "count" to row "guns sold"
-colnames(population_and_gun_count)[2] <- "guns sold"
-#deletes this weird row that appeared at the end of my data and I'm too lazy to ffigure out why it appeared
-#population_and_gun_count <- population_and_gun_count[-25, ]
-#removes the weird column that popped up. No idea why it's there, and it's ewasier to just kill it....later changed to get rid of a column i didn't need
-#augmented_crime_date <- subset(augmented_crime_date, select = -cleaned_date)
-
-write_csv(augmented_crime_date, "crime_data_all.csv")
-augmented_crime_date <- mutate(population_and_gun_count, 
-            murder_per_capita = MURDER / POPULATION,
-            violent_crime_per_capita = `VIOLENT CRIME TOTAL` / POPULATION,
-            property_crime_per_capita = `PROPERTY CRIME TOTALS` / POPULATION,
-            guns_per_capita = `guns sold`/ POPULATION
-            )
-
-hist(augmented_crime_date$`guns sold`)
-boxplot(augmented_crime_date$`guns sold`)
-mean(augmented_crime_date$`guns sold`)
-sd(augmented_crime_date$`guns sold`)
-
-plot(augmented_crime_date$`guns sold`, augmented_crime_date$`Median income (dollars)`)
-
-mean(augmented_crime_date$`Median income (dollars)`)
-sd(augmented_crime_date$`Median income (dollars)`)
-
-
-mean(augmented_crime_date$POPULATION)
-sd(augmented_crime_date$POPULATION)
-
-
-mean(augmented_crime_date$`VIOLENT CRIME TOTAL`)
-sd(augmented_crime_date$`VIOLENT CRIME TOTAL`)
-
-mean(augmented_crime_date$`PROPERTY CRIME TOTALS`)
-sd(augmented_crime_date$`PROPERTY CRIME TOTALS`)
-
-
-
-hist(augmented_crime_date$guns_per_capita)
-
-plot(augmented_crime_date$`guns sold`,augmented_crime_date$`Median income (dollars)`)
-
-
-cor.test(augmented_crime_date$`guns sold`, augmented_crime_date$`Median income (dollars)`)
-
-cor.test(augmented_crime_date$`guns sold`, augmented_crime_date$POPULATION)
-
-cor.test(augmented_crime_date$`guns sold`, augmented_crime_date$`VIOLENT CRIME TOTAL`)
-
-cor.test(augmented_crime_date$`guns sold`, augmented_crime_date$`PROPERTY CRIME TOTALS`)

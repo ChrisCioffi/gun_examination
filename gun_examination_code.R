@@ -144,7 +144,7 @@ write_csv(ar_platform_calibers, "ar_platform_calibers.csv")
  
  Lower_receiver_dealer <- guns_and_shops2 %>%
    filter(grepl("ar*|ar-15|-15|*15*|556", Model) & Caliber == "NULL" ) %>%
-   group_by(Model,`Dealer Name`, County ) %>%
+   group_by( County ) %>%
    summarise(count = n()) %>%
    arrange(desc(count))
  
